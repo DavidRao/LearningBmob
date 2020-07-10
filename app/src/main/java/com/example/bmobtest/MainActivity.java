@@ -2,6 +2,7 @@ package com.example.bmobtest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -18,19 +19,11 @@ public class MainActivity extends AppCompatActivity {
         Bmob.initialize(this, "1bfc00caac31c7809a1a6f25d8c1396f");
 
         Person person = new Person();
-        person.setName("David");
-        person.setAddress("China");
-        person.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                if(e!=null){
-                    Toast.makeText(MainActivity.this,
-                            e.getMessage(), Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(MainActivity.this,
-                            "Insert Data successfully!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        person.setName("Tony");
+        person.setAddress("America");
+
+        BmobBasicHelper basicHelper = new BmobBasicHelper();
+        basicHelper.addData(MainActivity.this, person);
+
     }
 }
